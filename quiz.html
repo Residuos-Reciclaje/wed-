@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz sobre Residuos</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);       
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        button {
+            padding: 10px 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        .explanation {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Quiz Sobre Los Residuos</h1>
+    
+        <!-- Preguntas -->
+        <div class="question">
+            <h3>1. ¿Qué tipo de residuo se puede reciclar?</h3>
+            <label><input type="radio" name="q1" value="correct"> Papel y cartón</label>
+            <label><input type="radio" name="q1" value="incorrect"> Residuos orgánicos</label>
+            <label><input type="radio" name="q1" value="incorrect"> Vidrio roto</label>
+            <div class="explanation">El papel y cartón son reciclables, mientras que los residuos orgánicos van al compost y el vidrio roto debe manejarse con cuidado.</div>
+        </div>
+    
+        <div class="question">
+            <h3>2. ¿Qué color de contenedor se utiliza para el reciclaje de plástico?</h3>
+            <label><input type="radio" name="q2" value="incorrect"> Verde</label>
+            <label><input type="radio" name="q2" value="correct"> Amarillo</label>
+            <label><input type="radio" name="q2" value="incorrect"> Azul</label>
+            <div class="explanation">El contenedor amarillo es para plásticos, el verde para vidrio, y el azul para papel y cartón.</div>
+        </div>
+    
+        <div class="question">
+            <h3>3. ¿Cuál de los siguientes residuos es considerado peligroso?</h3>
+            <label><input type="radio" name="q3" value="incorrect"> Restos de comida</label>
+            <label><input type="radio" name="q3" value="incorrect"> Papel usado</label>
+            <label><input type="radio" name="q3" value="correct"> Pilas</label>
+            <div class="explanation">Las pilas contienen sustancias tóxicas y deben ser recicladas en puntos específicos para residuos peligrosos.</div>
+        </div>
+    
+        <div class="question">
+            <h3>4. ¿Cómo se deben manejar los residuos electrónicos?</h3>
+            <label><input type="radio" name="q4" value="incorrect"> Tirarlos a la basura</label>
+            <label><input type="radio" name="q4" value="correct"> Llevarlos a un punto limpio</label>
+            <label><input type="radio" name="q4" value="incorrect"> Dejarlo en la calle</label>
+            <div class="explanation">Los residuos electrónicos contienen materiales peligrosos y deben ser gestionados en puntos limpios.</div>
+        </div>
+    
+        <div class="question">
+            <h3>5. ¿Qué contenedor es el adecuado para el reciclaje de vidrio?</h3>
+            <label><input type="radio" name="q5" value="correct"> Contenedor verde</label>
+            <label><input type="radio" name="q5" value="incorrect"> Contenedor azul</label>
+            <label><input type="radio" name="q5" value="incorrect"> Contenedor amarillo</label>
+            <div class="explanation">El contenedor verde es para vidrio, mientras que el azul es para papel y cartón y el amarillo para plásticos.</div>
+        </div>
+    
+        <div class="question">
+            <h3>6. ¿Cuál de estos materiales NO se recicla?</h3>
+            <label><input type="radio" name="q6" value="correct"> Papel sucio</label>
+            <label><input type="radio" name="q6" value="incorrect"> Botellas de plástico</label>
+            <label><input type="radio" name="q6" value="incorrect"> Latas de aluminio</label>
+            <div class="explanation">El papel sucio no se puede reciclar, mientras que las botellas de plástico y las latas de aluminio sí son reciclables.</div>
+        </div>
+    
+        <div class="question">
+            <h3>7. ¿Qué significa el símbolo de las tres flechas en triángulo?</h3>
+            <label><input type="radio" name="q7" value="correct"> Reciclaje</label>
+            <label><input type="radio" name="q7" value="incorrect"> Basura</label>
+            <label><input type="radio" name="q7" value="incorrect"> Producto tóxico</label>
+            <div class="explanation">El símbolo de las tres flechas en triángulo representa el reciclaje, indicando que el material puede ser reciclado.</div>
+        </div>
+    
+        <div class="question">
+            <h3>8. ¿Qué es el compostaje?</h3>
+            <label><input type="radio" name="q8" value="correct"> Proceso de descomposición de residuos orgánicos</label>
+            <label><input type="radio" name="q8" value="incorrect"> Quemar residuos plásticos</label>
+            <label><input type="radio" name="q8" value="incorrect"> Reciclar residuos electrónicos</label>
+            <div class="explanation">El compostaje es el proceso de convertir residuos orgánicos en abono natural.</div>
+        </div>
+    
+        <div class="question">
+            <h3>9. ¿Qué se debe hacer con los aceites usados?</h3>
+            <label><input type="radio" name="q9" value="incorrect"> Verterlos por el desagüe</label>
+            <label><input type="radio" name="q9" value="correct"> Llevarlos a un punto limpio</label>
+            <label><input type="radio" name="q9" value="incorrect"> Tirarlos a la basura</label>
+            <div class="explanation">Los aceites usados contaminan el agua, por lo que deben llevarse a un punto limpio.</div>
+        </div>
+    
+        <div class="question">
+            <h3>10. ¿Cómo se deben separar los residuos?</h3>
+            <label><input type="radio" name="q10" value="correct"> En diferentes contenedores según el tipo de material</label>
+            <label><input type="radio" name="q10" value="incorrect"> Todo en un solo contenedor</label>
+            <label><input type="radio" name="q10" value="incorrect"> No es necesario separar los residuos</label>
+            <div class="explanation">Es importante separar los residuos en diferentes contenedores para facilitar su reciclaje.</div>
+        </div>
+    
+        <div class="question">
+            <h3>11. ¿El vidrio y el cristal se reciclan juntos?</h3>
+            <label><input type="radio" name="q11" value="incorrect"> Sí</label>
+            <label><input type="radio" name="q11" value="correct"> No</label>
+            <div class="explanation">El vidrio se recicla, pero el cristal tiene un proceso diferente y no debe mezclarse.</div>
+        </div>
+    
+        <div class="question">
+            <h3>12. ¿Qué son los residuos peligrosos?</h3>
+            <label><input type="radio" name="q12" value="incorrect"> Restos de comida</label>
+            <label><input type="radio" name="q12" value="correct"> Residuos que contienen sustancias tóxicas o nocivas</label>
+            <label><input type="radio" name="q12" value="incorrect"> Residuos reciclables</label>
+            <div class="explanation">Los residuos peligrosos contienen sustancias tóxicas, como baterías y productos químicos.</div>
+        </div>
+    
+        <div class="question">
+            <h3>13. ¿Se pueden reciclar todos los plásticos?</h3>
+            <label><input type="radio" name="q13" value="incorrect"> Sí</label>
+            <label><input type="radio" name="q13" value="correct"> No</label>
+            <div class="explanation">No todos los plásticos son reciclables, solo aquellos marcados con el símbolo adecuado.</div>
+        </div>
+    
+        <div class="question">
+            <h3>14. ¿Qué se debe hacer con los medicamentos caducados?</h3>
+            <label><input type="radio" name="q14" value="incorrect"> Tirarlos a la basura</label>
+            <label><input type="radio" name="q14" value="correct"> Llevarlos a una farmacia o punto limpio</label>
+            <label><input type="radio" name="q14" value="incorrect"> Guardarlos indefinidamente</label>
+            <div class="explanation">Los medicamentos caducados deben ser llevados a farmacias o puntos limpios para su correcta gestión.</div>
+        </div>
+    
+      <center><button style="margin-top: 20px;" onclick="checkAnswers()">Enviar respuestas</button></center>  
+    
+        <div class="result" id="result">
+            <h2>Resultado: <span id="correctCount"></span> correctas y <span id="incorrectCount"></span> incorrectas</h2>
+        </div>
+    </div>
+
+    <!-- Añade las otras preguntas aquí como en los ejemplos anteriores -->
+
+  
+
+    <div class="result" id="result">
+        <h2>Resultado: <span id="correctCount"></span> correctas y <span id="incorrectCount"></span> incorrectas</h2>
+    </div>
+</div>
+
+<script>
+    function checkAnswers() {
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+        var allAnswered = true; // Variable para verificar si todas las preguntas han sido respondidas
+        var questions = document.querySelectorAll('.question');
+
+        questions.forEach(function(question) {
+            var selected = question.querySelector('input[type="radio"]:checked');
+            var explanation = question.querySelector('.explanation');
+            
+            if (selected) {
+                explanation.style.display = 'block'; // Mostrar explicación
+                if (selected.value === 'correct') {
+                    correctAnswers++;
+                    selected.parentElement.classList.add('correct');
+                } else {
+                    incorrectAnswers++;
+                    selected.parentElement.classList.add('incorrect');
+                }
+            } else {
+                allAnswered = false; // No se ha respondido esta pregunta
+            }
+        });
+
+        if (allAnswered) {
+            // Mostrar resultado
+            document.getElementById('correctCount').textContent = correctAnswers;
+            document.getElementById('incorrectCount').textContent = incorrectAnswers;
+            document.getElementById('result').style.display = 'block';
+        } else {
+            // Mostrar un mensaje de error y limpiar el formulario
+            var confirmMessage = 'Por favor, responde a todas las preguntas antes de enviar. ¿Deseas volver a llenar el formulario?';
+            if (confirm(confirmMessage)) {
+                // Recargar la página para limpiar el formulario
+                location.reload();
+            } else {
+                // Dejar las respuestas seleccionadas y ocultar explicaciones
+                document.querySelectorAll('.explanation').forEach(function(explanation) {
+                    explanation.style.display = 'none'; // Ocultar explicaciones
+                });
+                document.querySelectorAll('.correct, .incorrect').forEach(function(el) {
+                    el.classList.remove('correct', 'incorrect'); // Limpiar estilos de respuesta
+                });
+            }
+        }
+    }
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

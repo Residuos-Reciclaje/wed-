@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sopa de Letras de Reciclaje</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        #main-container {
+            display: flex;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 80%;
+        }
+
+        #word-list {
+            max-width: 200px;
+            margin-right: 30px;
+        }
+
+        #word-list h2 {
+            text-align: left;
+            font-size: 24px;
+            color: #16a085;
+        }
+
+        #word-list ul {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Dos columnas */
+            list-style-type: none;
+            padding: 0;
+            gap: 10px;
+        }
+
+        #word-list li {
+            margin: 5px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        #word-list li.found {
+            text-decoration: line-through;
+            color: green;
+        }
+
+        #sopa-container {
+            flex-grow: 1;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        td {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 18px;
+            user-select: none;
+        }
+
+        td.selected {
+            background-color: #d4edda;
+        }
+
+        td:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Sopa De Letras Sobre Residuos</h1>
+    <div id="main-container">
+        <div id="word-list">
+            <h2>Palabras a buscar:</h2>
+            <ul id="words" style="margin-top: 10px;">
+                <li>Reciclaje</li>
+                <li>Compostaje</li>
+                <li>Basura</li>
+                <li>Residuos</li>
+                <li>Plástico</li>
+                <li>Papel</li>
+                <li>Vidrio</li>
+                <li>Contenedor</li>
+                <li>Separación</li>
+                <li>Botella</li>
+                <li>Metales</li>
+                <li>Orgánico</li>
+                <li>Reutilizar</li>
+                <li>Energía</li>
+                <li>Tierra</li>
+                <li>Eco</li>
+                <li>Naturaleza</li>
+                <li>Reducir</li>
+                <li>Cuidado</li>
+                <li>Verde</li>
+            </ul>
+        </div>
+        <div id="sopa-container">
+            <table id="sopa">
+                <!-- La sopa de letras será generada aquí -->
+            </table>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const words = ['RECICLAJE', 'COMPOSTAJE', 'BASURA', 'RESIDUOS', 'PLASTICO', 'PAPEL', 'VIDRIO', 'CONTENEDOR', 'SEPARACION', 'BOTELLA', 'METALES', 'ORGANICO', 'REUTILIZAR', 'ENERGIA', 'TIERRA', 'ECO', 'NATURALEZA', 'REDUCIR', 'CUIDADO', 'VERDE'];
+            const gridSize = 15;
+            const selectedCells = [];
+            let isSelecting = false;
+
+            const grid = generateGrid(gridSize, words);
+            renderGrid(grid);
+
+            function generateGrid(size, words) {
+                const grid = Array.from({ length: size }, () => Array(size).fill(''));
+
+                words.forEach(word => {
+                    let placed = false;
+                    while (!placed) {
+                        const direction = Math.random() < 0.5 ? 'H' : 'V';
+                        const startRow = Math.floor(Math.random() * size);
+                        const startCol = Math.floor(Math.random() * size);
+
+                        if (canPlaceWord(grid, word, startRow, startCol, direction)) {
+                            placeWord(grid, word, startRow, startCol, direction);
+                            placed = true;
+                        }
+                    }
+                });
+
+                fillEmptyCells(grid);
+                return grid;
+            }
+
+            function canPlaceWord(grid, word, row, col, direction) {
+                if (direction === 'H') {
+                    if (col + word.length > grid.length) return false;
+                    for (let i = 0; i < word.length; i++) {
+                        if (grid[row][col + i] !== '' && grid[row][col + i] !== word[i]) return false;
+                    }
+                } else {
+                    if (row + word.length > grid.length) return false;
+                    for (let i = 0; i < word.length; i++) {
+                        if (grid[row + i][col] !== '' && grid[row + i][col] !== word[i]) return false;
+                    }
+                }
+                return true;
+            }
+
+            function placeWord(grid, word, row, col, direction) {
+                if (direction === 'H') {
+                    for (let i = 0; i < word.length; i++) {
+                        grid[row][col + i] = word[i];
+                    }
+                } else {
+                    for (let i = 0; i < word.length; i++) {
+                        grid[row + i][col] = word[i];
+                    }
+                }
+            }
+
+            function fillEmptyCells(grid) {
+                const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                for (let row = 0; row < grid.length; row++) {
+                    for (let col = 0; col < grid[row].length; col++) {
+                        if (grid[row][col] === '') {
+                            grid[row][col] = letters.charAt(Math.floor(Math.random() * letters.length));
+                        }
+                    }
+                }
+            }
+
+            function renderGrid(grid) {
+                const table = document.getElementById('sopa');
+                table.innerHTML = '';
+
+                grid.forEach((row, rowIndex) => {
+                    const tr = document.createElement('tr');
+                    row.forEach((cell, colIndex) => {
+                        const td = document.createElement('td');
+                        td.textContent = cell;
+
+                        td.addEventListener('mousedown', () => {
+                            isSelecting = true;
+                            toggleCell(td, rowIndex, colIndex);
+                        });
+
+                        td.addEventListener('mouseover', () => {
+                            if (isSelecting) {
+                                toggleCell(td, rowIndex, colIndex);
+                            }
+                        });
+
+                        td.addEventListener('mouseup', () => {
+                            isSelecting = false;
+                            checkWordSelection();
+                            selectedCells.length = 0; // Limpiar selección
+                        });
+
+                        tr.appendChild(td);
+                    });
+                    table.appendChild(tr);
+                });
+            }
+
+            function toggleCell(cell, row, col) {
+                cell.classList.add('selected');
+                selectedCells.push({ cell, row, col });
+            }
+
+            function checkWordSelection() {
+                const selectedWord = selectedCells.map(item => grid[item.row][item.col]).join('');
+
+                if (words.includes(selectedWord)) {
+                    markWordAsFound(selectedWord);
+                    selectedCells.forEach(item => item.cell.classList.add('found'));
+                } else {
+                    selectedCells.forEach(item => item.cell.classList.remove('selected'));
+                }
+            }
+
+            function markWordAsFound(word) {
+                const wordListItems = document.querySelectorAll('#words li');
+                wordListItems.forEach(item => {
+                    if (item.textContent.toUpperCase() === word) {
+                        item.classList.add('found');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
